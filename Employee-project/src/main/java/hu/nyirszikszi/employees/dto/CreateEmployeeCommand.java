@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Past;
 
 import java.time.LocalDate;
 
+@HrSalaryLimit(maxSalary = 5000)
 public class CreateEmployeeCommand {
 
 
