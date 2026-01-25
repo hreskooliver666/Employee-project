@@ -62,4 +62,8 @@ public class Employee {
         this.salary = salary;
     }
 
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
 }
