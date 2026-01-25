@@ -32,4 +32,8 @@ public class InMemoryEmployeeRepository {
                 .toList();
     }
 
+    public boolean existsById(long id) {
+        return store.containsKey(id);
+    }
+
 }
