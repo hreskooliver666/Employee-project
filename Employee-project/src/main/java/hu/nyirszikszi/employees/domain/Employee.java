@@ -42,4 +42,8 @@ public class Employee {
         return birthDate;
     }
 
+    public Department getDepartment() {
+        return department;
+    }
+
 }
