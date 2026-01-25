@@ -34,4 +34,8 @@ public class Employee {
         return email;
     }
 
+    public int getSalary() {
+        return salary;
+    }
+
 }
