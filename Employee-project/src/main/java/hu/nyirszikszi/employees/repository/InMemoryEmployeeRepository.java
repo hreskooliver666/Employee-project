@@ -11,5 +11,13 @@ public class InMemoryEmployeeRepository {
     private final Map<Long, Employee> store = new ConcurrentHashMap<>();
     private final AtomicLong seq = new AtomicLong(0);
 
+    public Employee save(Employee employee) {
+        if (employee.getId() == 0) {
+            employee.setId(seq.incrementAndGet());
+        }
+        store.put(employee.getId(), employee);
+        return employee;
+    }
+
 
 }
