@@ -8,10 +8,11 @@ import hu.nyirszikszi.employees.dto.UpdateEmployeeCommand;
 import hu.nyirszikszi.employees.exception.DuplicateEmailException;
 import hu.nyirszikszi.employees.exception.EmployeeNotFoundException;
 import hu.nyirszikszi.employees.repository.InMemoryEmployeeRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
+@Service
 public class EmployeeService {
 
     private final InMemoryEmployeeRepository repo;
