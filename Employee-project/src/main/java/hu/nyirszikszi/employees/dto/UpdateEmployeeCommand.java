@@ -9,6 +9,26 @@ public class UpdateEmployeeCommand {
     private Integer salary;
     private LocalDate birthDate;
     private String department;
-    
+
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Integer getSalary() {
+        return salary;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
 
 }
