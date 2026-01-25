@@ -11,6 +11,7 @@ public class CreateEmployeeCommand {
 
 
     @NotBlank(message = "Name is required")
+    @Name(maxLength = 50, message = "Name must start with an uppercase, length 3..50")
     private String name;
 
     @NotBlank(message = "Email is required")
@@ -21,8 +22,12 @@ public class CreateEmployeeCommand {
     private Integer salary;
 
     @Past(message = "Birth date must be in the past")
+    @MinAge(value = 16, message = "Employee must be at least 16 years old")
     private LocalDate birthDate;
 
+    @NotBlank(message = "Department is required")
+    @EnumValue(enumClass = hu.nyirszikszi.employees.domain.Department.class, ignoreCase = true,
+            message = "Department must be one of: HR, IT, FINANCE, SALES")
     private String department;
 
 
