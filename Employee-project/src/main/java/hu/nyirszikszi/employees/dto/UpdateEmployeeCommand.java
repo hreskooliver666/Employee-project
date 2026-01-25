@@ -6,7 +6,9 @@ import jakarta.validation.constraints.Past;
 
 import java.time.LocalDate;
 
+@HrSalaryLimit(maxSalary = 5000)
 public class UpdateEmployeeCommand {
+
 
     @Name(maxLength = 50, message = "Name must start with an uppercase, length 3..50")
     private String name;
