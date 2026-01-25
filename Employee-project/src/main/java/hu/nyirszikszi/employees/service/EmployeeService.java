@@ -4,6 +4,7 @@ import hu.nyirszikszi.employees.domain.Department;
 import hu.nyirszikszi.employees.domain.Employee;
 import hu.nyirszikszi.employees.dto.CreateEmployeeCommand;
 import hu.nyirszikszi.employees.dto.EmployeeDto;
+import hu.nyirszikszi.employees.dto.UpdateEmployeeCommand;
 import hu.nyirszikszi.employees.exception.DuplicateEmailException;
 import hu.nyirszikszi.employees.exception.EmployeeNotFoundException;
 import hu.nyirszikszi.employees.repository.InMemoryEmployeeRepository;
@@ -48,6 +49,38 @@ public class EmployeeService {
 
     public EmployeeDto get(long id) {
         Employee e = repo.findById(id).orElseThrow(() -> new EmployeeNotFoundException(id));
+        return toDto(e);
+    }
+
+    public EmployeeDto update(long id, UpdateEmployeeCommand cmd) {
+        Employee e = repo.findById(id).orElseThrow(() -> new EmployeeNotFoundException(id));
+
+        if (cmd.getEmail() != null && !cmd.getEmail().isBlank()) {
+            repo.findByEmailIgnoreCase(cmd.getEmail())
+                    .filter(existing -> existing.getId() != e.getId())
+                    .ifPresent(existing -> {
+                        throw new DuplicateEmailException(cmd.getEmail());
+                    });
+            e.setEmail(cmd.getEmail().trim());
+        }
+
+        if (cmd.getName() != null && !cmd.getName().isBlank()) {
+            e.setName(cmd.getName().trim());
+        }
+
+        if (cmd.getSalary() != null) {
+            e.setSalary(cmd.getSalary());
+        }
+
+        if (cmd.getBirthDate() != null) {
+            e.setBirthDate(cmd.getBirthDate());
+        }
+
+        if (cmd.getDepartment() != null && !cmd.getDepartment().isBlank()) {
+            e.setDepartment(Department.valueOf(cmd.getDepartment().trim().toUpperCase()));
+        }
+
+        repo.save(e);
         return toDto(e);
     }
 
