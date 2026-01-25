@@ -2,10 +2,7 @@ package hu.nyirszikszi.employees.repository;
 
 import hu.nyirszikszi.employees.domain.Employee;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -38,6 +35,14 @@ public class InMemoryEmployeeRepository {
 
     public void deleteById(long id) {
         store.remove(id);
+    }
+
+    public Optional<Employee> findByEmailIgnoreCase(String email) {
+        if (email == null) return Optional.empty();
+        String needle = email.trim().toLowerCase(Locale.ROOT);
+        return store.values().stream()
+                .filter(e -> e.getEmail() != null && e.getEmail().trim().toLowerCase(Locale.ROOT).equals(needle))
+                .findFirst();
     }
 
 }
