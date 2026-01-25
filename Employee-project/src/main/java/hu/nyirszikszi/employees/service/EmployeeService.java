@@ -84,6 +84,11 @@ public class EmployeeService {
         return toDto(e);
     }
 
+    public void delete(long id) {
+        if (!repo.existsById(id)) throw new EmployeeNotFoundException(id);
+        repo.deleteById(id);
+    }
+
     private EmployeeDto toDto(Employee e) {
         return new EmployeeDto(
                 e.getId(),
