@@ -7,6 +7,8 @@ import hu.nyirszikszi.employees.dto.EmployeeDto;
 import hu.nyirszikszi.employees.exception.DuplicateEmailException;
 import hu.nyirszikszi.employees.repository.InMemoryEmployeeRepository;
 
+import java.util.List;
+
 
 public class EmployeeService {
 
@@ -30,6 +32,17 @@ public class EmployeeService {
                 Department.valueOf(cmd.getDepartment().trim().toUpperCase())
         ));
         return toDto(saved);
+    }
+
+    public List<EmployeeDto> list(String department, Integer minSalary) {
+        boolean hasDept = department != null && !department.isBlank();
+        boolean hasMin = minSalary != null;
+
+        return repo.findAll().stream()
+                .filter(e -> !hasDept || e.getDepartment() == Department.valueOf(department.trim().toUpperCase()))
+                .filter( e -> !hasMin || e.getSalary() >= minSalary)
+                .map(this::toDto)
+                .toList();
     }
 
     private EmployeeDto toDto(Employee e) {
