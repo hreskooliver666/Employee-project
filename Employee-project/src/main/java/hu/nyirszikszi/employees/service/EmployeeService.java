@@ -5,6 +5,7 @@ import hu.nyirszikszi.employees.domain.Employee;
 import hu.nyirszikszi.employees.dto.CreateEmployeeCommand;
 import hu.nyirszikszi.employees.dto.EmployeeDto;
 import hu.nyirszikszi.employees.exception.DuplicateEmailException;
+import hu.nyirszikszi.employees.exception.EmployeeNotFoundException;
 import hu.nyirszikszi.employees.repository.InMemoryEmployeeRepository;
 
 import java.util.List;
@@ -43,6 +44,11 @@ public class EmployeeService {
                 .filter( e -> !hasMin || e.getSalary() >= minSalary)
                 .map(this::toDto)
                 .toList();
+    }
+
+    public EmployeeDto get(long id) {
+        Employee e = repo.findById(id).orElseThrow(() -> new EmployeeNotFoundException(id));
+        return toDto(e);
     }
 
     private EmployeeDto toDto(Employee e) {
