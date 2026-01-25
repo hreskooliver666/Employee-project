@@ -6,11 +6,10 @@ import jakarta.validation.constraints.Past;
 
 import java.time.LocalDate;
 
-@HrSalaryLimit(maxSalary = 5000)
+
 public class UpdateEmployeeCommand {
 
 
-    @Name(maxLength = 50, message = "Name must start with an uppercase, length 3..50")
     private String name;
 
     @Email(message = "Email format is invalid")
@@ -20,11 +19,8 @@ public class UpdateEmployeeCommand {
     private Integer salary;
 
     @Past(message = "Birth date must be in the past")
-    @MinAge(value = 16, message = "Employee must be at least 16 years old")
     private LocalDate birthDate;
-
-    @EnumValue(enumClass = hu.nyirszikszi.employees.domain.Department.class, ignoreCase = true,
-            message = "Department must be one of: HR, IT, FINANCE, SALES")
+    
     private String department;
 
 
