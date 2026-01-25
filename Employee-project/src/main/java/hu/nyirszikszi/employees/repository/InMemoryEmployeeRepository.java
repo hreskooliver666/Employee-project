@@ -3,6 +3,7 @@ package hu.nyirszikszi.employees.repository;
 import hu.nyirszikszi.employees.domain.Employee;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -17,6 +18,10 @@ public class InMemoryEmployeeRepository {
         }
         store.put(employee.getId(), employee);
         return employee;
+    }
+
+    public Optional<Employee> findById(long id) {
+        return Optional.ofNullable(store.get(id));
     }
 
 
