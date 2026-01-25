@@ -58,4 +58,8 @@ public class Employee {
         this.email = email;
     }
 
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
 }
