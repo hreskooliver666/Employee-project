@@ -1,4 +1,14 @@
 package hu.nyirszikszi.employees.domain;
 
+import java.time.LocalDate;
+
 public class Employee {
+
+    private long id;
+    private String name;
+    private String email;
+    private int salary;
+    private LocalDate birthDate;
+    private Department department;
+
 }
