@@ -89,6 +89,18 @@ public class EmployeeService {
         repo.deleteById(id);
     }
 
+    public List<EmployeeDto> bulkCreate(List<CreateEmployeeCommand> commands) {
+        // egyszerű: ha bármelyik email már foglalt, 409
+        for (CreateEmployeeCommand cmd : commands) {
+            repo.findByEmailIgnoreCase(cmd.getEmail()).ifPresent( e -> {
+                throw new DuplicateEmailException(cmd.getEmail());
+            });
+        }
+        return commands.stream()
+                .map(this::create) // create már ment + mapping
+                .toList();
+    }
+
     private EmployeeDto toDto(Employee e) {
         return new EmployeeDto(
                 e.getId(),
