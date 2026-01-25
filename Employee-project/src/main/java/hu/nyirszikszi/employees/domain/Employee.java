@@ -13,4 +13,15 @@ public class Employee {
 
     public Employee() {}
 
+    public Employee(long id, String name, String email, int salary, LocalDate birthDate, Department department) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.salary = salary;
+        this.birthDate = birthDate;
+        this.department = department;
+    }
+
+    
+
 }
