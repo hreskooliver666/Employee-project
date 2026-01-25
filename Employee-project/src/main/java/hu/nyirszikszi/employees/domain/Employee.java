@@ -30,4 +30,8 @@ public class Employee {
         return name;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
 }
