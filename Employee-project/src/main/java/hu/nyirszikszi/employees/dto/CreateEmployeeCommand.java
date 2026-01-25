@@ -32,5 +32,24 @@ public class CreateEmployeeCommand {
         return department;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setSalary(Integer salary) {
+        this.salary = salary;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
 
 }
