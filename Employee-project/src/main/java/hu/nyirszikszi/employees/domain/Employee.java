@@ -66,4 +66,8 @@ public class Employee {
         this.birthDate = birthDate;
     }
 
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
 }
