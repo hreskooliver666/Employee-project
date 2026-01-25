@@ -36,4 +36,8 @@ public class InMemoryEmployeeRepository {
         return store.containsKey(id);
     }
 
+    public void deleteById(long id) {
+        store.remove(id);
+    }
+
 }
