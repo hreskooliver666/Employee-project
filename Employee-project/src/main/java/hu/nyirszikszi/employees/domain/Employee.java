@@ -11,4 +11,6 @@ public class Employee {
     private LocalDate birthDate;
     private Department department;
 
+    public Employee() {}
+
 }
