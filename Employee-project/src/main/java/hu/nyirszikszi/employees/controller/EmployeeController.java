@@ -7,6 +7,8 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/employees")
 public class EmployeeController {
@@ -22,7 +24,13 @@ public class EmployeeController {
     public EmployeeDto create (@Valid @RequestBody CreateEmployeeCommand command){
         return service.create(command);
     }
-    
 
+    @GetMapping
+    public List<EmployeeDto> list(@RequestParam(required = false) String department,
+                                  @RequestParam(required = false) Integer minSalary){
+        return service.list(department, minSalary);
+    }
+
+    
 
 }
