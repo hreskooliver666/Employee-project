@@ -1,5 +1,9 @@
 package hu.nyirszikszi.employees.dto;
 
+import hu.nyirszikszi.employees.validation.EnumValue;
+import hu.nyirszikszi.employees.validation.HrSalaryLimit;
+import hu.nyirszikszi.employees.validation.Name;
+import hu.nyirszikszi.employees.validation.MinAge;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -8,10 +12,11 @@ import jakarta.validation.constraints.Past;
 import java.time.LocalDate;
 
 
+@HrSalaryLimit(maxSalary = 5000)
 public class CreateEmployeeCommand {
 
-
     @NotBlank(message = "Name is required")
+    @Name(maxLength = 50, message = "Name must start with an uppercase, length 3..50")
     private String name;
 
     @NotBlank(message = "Email is required")
@@ -22,12 +27,13 @@ public class CreateEmployeeCommand {
     private Integer salary;
 
     @Past(message = "Birth date must be in the past")
+    @MinAge(value = 16, message = "Employee must be at least 16 years old")
     private LocalDate birthDate;
 
     @NotBlank(message = "Department is required")
+    @EnumValue(enumClass = hu.nyirszikszi.employees.domain.Department.class, ignoreCase = true,
+            message = "Department must be one of: HR, IT, FINANCE, SALES")
     private String department;
-
-
 
     public String getName() {
         return name;
@@ -68,5 +74,4 @@ public class CreateEmployeeCommand {
     public void setDepartment(String department) {
         this.department = department;
     }
-
 }
