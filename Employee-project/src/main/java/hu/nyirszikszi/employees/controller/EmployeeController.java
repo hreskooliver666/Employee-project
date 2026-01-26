@@ -48,4 +48,10 @@ public class EmployeeController {
         service.delete(id);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/bulk")
+    public List<EmployeeDto> bulkCreate(@Valid @RequestBody List<@Valid CreateEmployeeCommand> commands){
+        return service.bulkCreate(commands);
+    }
+
 }
