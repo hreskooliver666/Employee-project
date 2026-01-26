@@ -2,6 +2,7 @@ package hu.nyirszikszi.employees.controller;
 
 import hu.nyirszikszi.employees.dto.CreateEmployeeCommand;
 import hu.nyirszikszi.employees.dto.EmployeeDto;
+import hu.nyirszikszi.employees.dto.UpdateEmployeeCommand;
 import hu.nyirszikszi.employees.service.EmployeeService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -36,6 +37,10 @@ public class EmployeeController {
         return service.get(id);
     }
 
+    @PutMapping("/{id}")
+    public EmployeeDto update(@PathVariable long id, @Valid @RequestBody UpdateEmployeeCommand command){
+        return service.update(id, command);
+    }
     
 
 }
