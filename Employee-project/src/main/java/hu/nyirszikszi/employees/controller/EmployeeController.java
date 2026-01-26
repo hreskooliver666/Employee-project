@@ -31,6 +31,11 @@ public class EmployeeController {
         return service.list(department, minSalary);
     }
 
+    @GetMapping("/{id}")
+    public EmployeeDto get(@PathVariable long id){
+        return service.get(id);
+    }
+
     
 
 }
