@@ -48,4 +48,14 @@ public class GlobalExceptionHandler {
         return pd;
     }
 
+    @ExceptionHandler(EmployeeNotFoundException.class)
+    public ProblemDetail handleNotFound(EmployeeNotFoundException ex){
+        ProblemDetail pd = ProblemDetail.forStatus(HttpStatus.NOT_FOUND);
+        pd.setType(URI.create("employees/not-found"));
+        pd.setTitle("Not found");
+        pd.setDetail(ex.getMessage());
+
+        return pd;
+    }
+
 }
