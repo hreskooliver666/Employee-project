@@ -27,24 +27,24 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public List<EmployeeDto> list(@RequestParam(required = false) String department,
-                                  @RequestParam(required = false) Integer minSalary){
+    public List<EmployeeDto> list(@RequestParam(name = "department", required = false) String department,
+                                  @RequestParam(name = "salary",required = false) Integer minSalary){
         return service.list(department, minSalary);
     }
 
     @GetMapping("/{id}")
-    public EmployeeDto get(@PathVariable long id){
+    public EmployeeDto get(@PathVariable("id") long id){
         return service.get(id);
     }
 
     @PutMapping("/{id}")
-    public EmployeeDto update(@PathVariable long id, @Valid @RequestBody UpdateEmployeeCommand command){
+    public EmployeeDto update(@PathVariable("id") long id, @Valid @RequestBody UpdateEmployeeCommand command){
         return service.update(id, command);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable long id){
+    public void delete(@PathVariable("id") long id){
         service.delete(id);
     }
 
