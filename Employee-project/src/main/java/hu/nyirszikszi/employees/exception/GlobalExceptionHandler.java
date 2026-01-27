@@ -58,4 +58,14 @@ public class GlobalExceptionHandler {
         return pd;
     }
 
+    @ExceptionHandler(DuplicateEmailException.class)
+    public ProblemDetail handleDuplicate(DuplicateEmailException ex){
+        ProblemDetail pd = ProblemDetail.forStatus(HttpStatus.CONFLICT);
+        pd.setType(URI.create("employees/duplicate-email"));
+        pd.setTitle("Duplicate email");
+        pd.setDetail(ex.getMessage());
+
+        return pd;
+    }
+
 }
