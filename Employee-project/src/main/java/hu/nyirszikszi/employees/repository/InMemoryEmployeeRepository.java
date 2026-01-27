@@ -1,11 +1,13 @@
 package hu.nyirszikszi.employees.repository;
 
 import hu.nyirszikszi.employees.domain.Employee;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
+@Repository
 public class InMemoryEmployeeRepository {
 
     private final Map<Long, Employee> store = new ConcurrentHashMap<>();
