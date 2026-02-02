@@ -2,6 +2,7 @@ package hu.nyirszikszi.moderntoclassic;
 
 import hu.nyirszikszi.moderntoclassic.model.Product;
 
+import javax.xml.stream.StreamFilter;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -41,6 +42,15 @@ public class CartPracticeModern {
                 .sorted()
                 .toList();
 
+    }
+
+    public void validateCartOrThrow(List<String> cartSkus){
+        cartSkus.stream()
+                .filter(Objects::nonNull)
+                .map(String::trim)
+                .filter(s -> !s.isBlank())
+                .forEach(sku -> findBySkuIgnoreCase(sku)
+                        .orElseThrow(() -> new IllegalArgumentException("Unknown SKU: " + sku)));
     }
 
 
