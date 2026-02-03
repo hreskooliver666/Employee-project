@@ -40,7 +40,7 @@ public class Main {
             System.out.println("ERROR " + e.getMessage());
         }
         System.out.println("\n=== Cheapest electronics ===");
-        cart.find
+        cart.fin
     }
 
 
