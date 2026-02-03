@@ -20,4 +20,5 @@ public class CartPracticeModernSolution {
                 .min(Comparator.comparingInt(Product::getPrice));
     }
 
+
 }
