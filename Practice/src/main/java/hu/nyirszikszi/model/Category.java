@@ -1,4 +1,4 @@
-package hu.nyirszikszi.moderntoclassic.model;
+package hu.nyirszikszi.model;
 
 public enum Category {
 

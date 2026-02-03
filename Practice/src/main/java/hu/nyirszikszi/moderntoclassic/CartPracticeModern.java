@@ -1,8 +1,7 @@
 package hu.nyirszikszi.moderntoclassic;
 
-import hu.nyirszikszi.moderntoclassic.model.Product;
+import hu.nyirszikszi.model.Product;
 
-import javax.xml.stream.StreamFilter;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
