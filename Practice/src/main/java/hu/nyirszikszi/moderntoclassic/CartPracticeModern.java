@@ -26,7 +26,7 @@ public class CartPracticeModern {
 
     }
 
-    public List<String> csrtProductNameUniqueSorted(List<String> cartSkus){
+    public List<String> cartProductNameUniqueSorted(List<String> cartSkus){
         return cartSkus.stream()
                 .filter(Objects::nonNull)
                 .map(String::trim)
